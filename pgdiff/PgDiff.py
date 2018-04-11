@@ -1,16 +1,16 @@
 import argparse
 import logging
-from ..helpers.Writer import Writer
-from ..loaders.PgDumpLoader import PgDumpLoader
-from ..diff.PgDiffUtils import PgDiffUtils
+from .helpers.Writer import Writer
+from .loaders.PgDumpLoader import PgDumpLoader
+from .diff.PgDiffUtils import PgDiffUtils
 from .SearchPathHelper import SearchPathHelper
-from ..diff.PgDiffTables import PgDiffTables
-from ..diff.PgDiffTriggers import PgDiffTriggers
-from ..diff.PgDiffViews import PgDiffViews
-from ..diff.PgDiffConstraints import PgDiffConstraints
-from ..diff.PgDiffIndexes import PgDiffIndexes
-from ..diff.PgDiffSequences import PgDiffSequences
-from ..diff.PgDiffFunctions import PgDiffFunctions
+from .diff.PgDiffTables import PgDiffTables
+from .diff.PgDiffTriggers import PgDiffTriggers
+from .diff.PgDiffViews import PgDiffViews
+from .diff.PgDiffConstraints import PgDiffConstraints
+from .diff.PgDiffIndexes import PgDiffIndexes
+from .diff.PgDiffSequences import PgDiffSequences
+from .diff.PgDiffFunctions import PgDiffFunctions
 
 
 class PgDiff(object):
@@ -163,8 +163,7 @@ class LogLevelAction(argparse.Action):
         elif values == 'CRITICAL':
             setattr(namespace, self.dest, logging.CRITICAL)
 
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(prog='PgDiffPy', usage='python PgDiff.py [options] <old_dump> <new_dump>')
 
     parser.add_argument('old_dump')
@@ -203,3 +202,7 @@ if __name__ == "__main__":
         else:
             print('Error: %s' % e)
         exit(1)
+
+
+if __name__ == "__main__":
+    main()
